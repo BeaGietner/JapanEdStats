@@ -1,9 +1,7 @@
 name: Publish Quarto Document
-
 on:
   push:
     branches: main
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -21,16 +19,20 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v3
 
+      - name: Create _site directory
+        run: mkdir -p _site
+
       - name: Render Quarto Document
         uses: quarto-dev/quarto-actions/render@v2
         with:
-          input: Documentation.qmd 
+          path: Documentation.qmd
           to: html
+          output: _site/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./  
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
