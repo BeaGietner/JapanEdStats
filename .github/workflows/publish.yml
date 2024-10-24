@@ -1,0 +1,36 @@
+name: Publish Quarto Document
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v3
+
+      - name: Render Quarto Document
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
