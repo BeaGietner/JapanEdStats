@@ -5,11 +5,11 @@ format:
   html:
     toc: true
     toc-depth: 3
-    toc-title: "目次"  # "Contents" in Japanese
+    toc-title: "目次"  
     number-sections: true
     embed-resources: true
     theme: default
-    output-file: "report.html"
+    output-file: "index.html"
 lang: ja-JP
 execute:
   warning: false
