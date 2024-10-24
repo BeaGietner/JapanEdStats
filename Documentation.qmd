@@ -33,7 +33,8 @@ library(readxl)
 ```{r dataset}
 knitr::opts_chunk$set(echo = TRUE)
 # Load dataset
-# japan_ed_data <- read_csv("path/to/your/data.csv") 
+# japan_ed_data <- read_csv("path/to/your/data.csv") for file with NAs for years with no data
+# japan_ed_data_noNAs <- read_csv("path/to/your/data.csv") for file with no NAs for years with no data
 # or
 # japan_ed_data <- read_excel("path/to/your/data.xlsx")
 ```
@@ -50,9 +51,60 @@ The dataset includes the following key variables:
 - Year: Year of observation
 - Value: Value of the specific educational statistic for that prefecture and year
 
-## Geographical Scope
+## Prefecture Codes and Names
 
-The data covers all 47 prefectures of Japan, plus a national average, a mean 平均値 and its standard deviation 標準偏差.
+The dataset includes all 47 prefectures of Japan plus the national average (code 0). Here is the complete list, with coordinates of prefectural capitals:
+
+| Code | Japanese Name | English Name | Region | Latitude (N+) | Longitude (E+) |
+|------|--------------|--------------|---------|----------|-----------|
+| 0 | 全国 | Japan | National Average | - | - |
+| 1 | 北海道 | Hokkaido | Hokkaido | 43.0642 | 141.3469 |
+| 2 | 青森県 | Aomori | Tohoku | 40.8244 | 140.7400 |
+| 3 | 岩手県 | Iwate | Tohoku | 39.7036 | 141.1527 |
+| 4 | 宮城県 | Miyagi | Tohoku | 38.2688 | 140.8721 |
+| 5 | 秋田県 | Akita | Tohoku | 39.7186 | 140.1024 |
+| 6 | 山形県 | Yamagata | Tohoku | 38.2404 | 140.3633 |
+| 7 | 福島県 | Fukushima | Tohoku | 37.7500 | 140.4678 |
+| 8 | 茨城県 | Ibaraki | Kanto | 36.3418 | 140.4467 |
+| 9 | 栃木県 | Tochigi | Kanto | 36.5657 | 139.8836 |
+| 10 | 群馬県 | Gunma | Kanto | 36.3911 | 139.0608 |
+| 11 | 埼玉県 | Saitama | Kanto | 35.8569 | 139.6489 |
+| 12 | 千葉県 | Chiba | Kanto | 35.6073 | 140.1063 |
+| 13 | 東京都 | Tokyo | Kanto | 35.6895 | 139.6917 |
+| 14 | 神奈川県 | Kanagawa | Kanto | 35.4478 | 139.6425 |
+| 15 | 新潟県 | Niigata | Chubu | 37.9022 | 139.0236 |
+| 16 | 富山県 | Toyama | Chubu | 36.6953 | 137.2114 |
+| 17 | 石川県 | Ishikawa | Chubu | 36.5945 | 136.6256 |
+| 18 | 福井県 | Fukui | Chubu | 36.0641 | 136.2196 |
+| 19 | 山梨県 | Yamanashi | Chubu | 35.6641 | 138.5684 |
+| 20 | 長野県 | Nagano | Chubu | 36.6513 | 138.1811 |
+| 21 | 岐阜県 | Gifu | Chubu | 35.3911 | 136.7220 |
+| 22 | 静岡県 | Shizuoka | Chubu | 34.9769 | 138.3831 |
+| 23 | 愛知県 | Aichi | Chubu | 35.1802 | 136.9066 |
+| 24 | 三重県 | Mie | Kansai | 34.7303 | 136.5086 |
+| 25 | 滋賀県 | Shiga | Kansai | 35.0045 | 135.8686 |
+| 26 | 京都府 | Kyoto | Kansai | 35.0116 | 135.7681 |
+| 27 | 大阪府 | Osaka | Kansai | 34.6937 | 135.5023 |
+| 28 | 兵庫県 | Hyogo | Kansai | 34.6913 | 135.1830 |
+| 29 | 奈良県 | Nara | Kansai | 34.6851 | 135.8048 |
+| 30 | 和歌山県 | Wakayama | Kansai | 34.2260 | 135.1675 |
+| 31 | 鳥取県 | Tottori | Chugoku | 35.5036 | 134.2383 |
+| 32 | 島根県 | Shimane | Chugoku | 35.4723 | 133.0505 |
+| 33 | 岡山県 | Okayama | Chugoku | 34.6618 | 133.9343 |
+| 34 | 広島県 | Hiroshima | Chugoku | 34.3853 | 132.4553 |
+| 35 | 山口県 | Yamaguchi | Chugoku | 34.1859 | 131.4706 |
+| 36 | 徳島県 | Tokushima | Shikoku | 34.0658 | 134.5593 |
+| 37 | 香川県 | Kagawa | Shikoku | 34.3401 | 134.0434 |
+| 38 | 愛媛県 | Ehime | Shikoku | 33.8417 | 132.7661 |
+| 39 | 高知県 | Kochi | Shikoku | 33.5597 | 133.5311 |
+| 40 | 福岡県 | Fukuoka | Kyushu | 33.6064 | 130.4181 |
+| 41 | 佐賀県 | Saga | Kyushu | 33.2494 | 130.2989 |
+| 42 | 長崎県 | Nagasaki | Kyushu | 32.7448 | 129.8737 |
+| 43 | 熊本県 | Kumamoto | Kyushu | 32.7898 | 130.7417 |
+| 44 | 大分県 | Oita | Kyushu | 33.2382 | 131.6125 |
+| 45 | 宮崎県 | Miyazaki | Kyushu | 31.9077 | 131.4202 |
+| 46 | 鹿児島県 | Kagoshima | Kyushu | 31.5602 | 130.5581 |
+| 47 | 沖縄県 | Okinawa | Kyushu | 26.2124 | 127.6809 |
 
 # Sections Overview
 
