@@ -2,16 +2,18 @@
 title: "Japanese Education Statistics Dataset"
 author: "Beatriz Gietner"
 format: 
-  pdf:
-    latex-engine: xelatex
-    keep_tex: true
-lang: ja
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "目次"  # "Contents" in Japanese
+    number-sections: true
+    embed-resources: true
+    theme: default
+    output-file: "report.html"
+lang: ja-JP
 execute:
   warning: false
-fontsize: 12pt
-mainfont: "Noto Serif CJK JP"  # Specify the font directly
 ---
-
 
 # Introduction
 
