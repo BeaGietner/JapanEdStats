@@ -19,25 +19,14 @@ execute:
 
 This document provides information on a set of comprehensive education statistics for Japan, covering various aspects of the education system from early childhood education to university level. The data is at the prefecture level, with an additional row for national averages, forming an unbalanced panel dataset.
 
-```{r libraries}
-knitr::opts_chunk$set(echo = TRUE)
-# Clean environment
-rm(list = ls())
-# Load necessary libraries
-library(tidyverse)
-library(knitr)
-library(ggplot2)
-library(readxl)
-```
-
-```{r dataset}
-knitr::opts_chunk$set(echo = TRUE)
-# Load dataset
-# japan_ed_data <- read_csv("path/to/your/data.csv") for file with NAs for years with no data
-# japan_ed_data_noNAs <- read_csv("path/to/your/data.csv") for file with no NAs for years with no data
+```{r dataset, eval=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+# Example code for loading dataset
+# japan_ed_data <- read_csv("path/to/your/data.csv") # for file with NAs for years with no data
+# japan_ed_data_noNAs <- read_csv("path/to/your/data.csv") # for file with no NAs for years with no data
 # or
-# japan_ed_data <- read_excel("path/to/your/data.xlsx") for file with NAs for years with no data
-# japan_ed_data_noNAs <- read_excel("path/to/your/data.xlsx") for file with no NAs for years with no data
+# japan_ed_data <- read_excel("path/to/your/data.xlsx") # for file with NAs for years with no data
+# japan_ed_data_noNAs <- read_excel("path/to/your/data.xlsx") # for file with no NAs for years with no data
 ```
 
 # Data Overview
