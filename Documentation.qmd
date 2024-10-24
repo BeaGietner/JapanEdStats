@@ -36,7 +36,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # japan_ed_data <- read_csv("path/to/your/data.csv") for file with NAs for years with no data
 # japan_ed_data_noNAs <- read_csv("path/to/your/data.csv") for file with no NAs for years with no data
 # or
-# japan_ed_data <- read_excel("path/to/your/data.xlsx")
+# japan_ed_data <- read_excel("path/to/your/data.xlsx") for file with NAs for years with no data
+# japan_ed_data_noNAs <- read_excel("path/to/your/data.xlsx") for file with no NAs for years with no data
 ```
 
 # Data Overview
@@ -45,11 +46,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The dataset includes the following key variables:
 
-- Prefecture_code: Numeric identifier for each prefecture
-- Prefecture_jp: Name of the prefecture in Japanese
-- Prefecture_en: Name of the prefecture in English
-- Year: Year of observation
-- Value: Value of the specific educational statistic for that prefecture and year
+- sheet_index: Numeric identifier for each variable
+- prefecture_code: Numeric identifier for each prefecture
+- prefecture_name_jp: Name of the prefecture in Japanese
+- prefecture_name_en: Name of the prefecture in English
+- year: Year of observation
+- sheet_name: String identifier for each variable name
+- value: Value of the specific educational statistic for that prefecture and year
 
 ## Prefecture Codes and Names
 

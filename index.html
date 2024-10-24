@@ -3120,7 +3120,8 @@ vertical-align: -.125em;
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># japan_ed_data &lt;- read_csv(&quot;path/to/your/data.csv&quot;) for file with NAs for years with no data</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># japan_ed_data_noNAs &lt;- read_csv(&quot;path/to/your/data.csv&quot;) for file with no NAs for years with no data</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># japan_ed_data &lt;- read_excel(&quot;path/to/your/data.xlsx&quot;)</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># japan_ed_data &lt;- read_excel(&quot;path/to/your/data.xlsx&quot;) for file with NAs for years with no data</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># japan_ed_data_noNAs &lt;- read_excel(&quot;path/to/your/data.xlsx&quot;) for file with no NAs for years with no data</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-overview" class="level1" data-number="2">
@@ -3129,11 +3130,13 @@ vertical-align: -.125em;
 <h2 data-number="2.1" class="anchored" data-anchor-id="variables-description"><span class="header-section-number">2.1</span> Variables Description</h2>
 <p>The dataset includes the following key variables:</p>
 <ul>
-<li>Prefecture_code: Numeric identifier for each prefecture</li>
-<li>Prefecture_jp: Name of the prefecture in Japanese</li>
-<li>Prefecture_en: Name of the prefecture in English</li>
-<li>Year: Year of observation</li>
-<li>Value: Value of the specific educational statistic for that prefecture and year</li>
+<li>sheet_index: Numeric identifier for each variable</li>
+<li>prefecture_code: Numeric identifier for each prefecture</li>
+<li>prefecture_name_jp: Name of the prefecture in Japanese</li>
+<li>prefecture_name_en: Name of the prefecture in English</li>
+<li>year: Year of observation</li>
+<li>sheet_name: String identifier for each variable name</li>
+<li>value: Value of the specific educational statistic for that prefecture and year</li>
 </ul>
 </section>
 <section id="prefecture-codes-and-names" class="level2" data-number="2.2">
