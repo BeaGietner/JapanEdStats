@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Beatriz Gietner">
+
+<title>Japanese Education Statistics Dataset</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Documentation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Documentation_files/libs/quarto-html/quarto.js"></script>
+<script src="Documentation_files/libs/quarto-html/popper.min.js"></script>
+<script src="Documentation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Documentation_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Documentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Documentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Documentation_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Documentation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Documentation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Japanese Education Statistics Dataset</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">作者</div>
+    <div class="quarto-title-meta-contents">
+             <p>Beatriz Gietner </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This document provides information on a set of comprehensive education statistics for Japan, covering various aspects of the education system from early childhood education to university level. The data is at the prefecture level, with an additional row for national averages, forming an unbalanced panel dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean environment</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># japan_ed_data &lt;- read_csv("path/to/your/data.csv") </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># japan_ed_data &lt;- read_excel("path/to/your/data.xlsx")</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-overview" class="level1">
+<h1>Data Overview</h1>
+<section id="variables-description" class="level2">
+<h2 class="anchored" data-anchor-id="variables-description">Variables Description</h2>
+<p>The dataset includes the following key variables:</p>
+<ul>
+<li>Prefecture_code: Numeric identifier for each prefecture</li>
+<li>Prefecture_jp: Name of the prefecture in Japanese</li>
+<li>Prefecture_en: Name of the prefecture in English</li>
+<li>Year: Year of observation</li>
+<li>Value: Value of the specific educational statistic for that prefecture and year</li>
+</ul>
+</section>
+<section id="geographical-scope" class="level2">
+<h2 class="anchored" data-anchor-id="geographical-scope">Geographical Scope</h2>
+<p>The data covers all 47 prefectures of Japan, plus a national average, a mean 平均値 and its standard deviation 標準偏差.</p>
+</section>
+</section>
+<section id="sections-overview" class="level1">
+<h1>Sections Overview</h1>
+<p>The dataset is an unbalanced panel, with data points starting in 2005, jumping to 2010, and then continuing from 2012 to 2022 for most variables. Each sheet in the original Excel file represents a different educational statistic, including:</p>
+<ol type="1">
+<li>Educational institutions 教育施設</li>
+<li>Teachers 教員</li>
+<li>Pupils 生徒</li>
+<li>Junior colleges, colleges, and universities 短期大学・大学</li>
+<li>Specialty schools and miscellaneous schools 専修学校・各種学</li>
+<li>Educational diffusion rates 教育普及度</li>
+<li>Education expenditure per pupil 1人当たりの学校等教育費</li>
+</ol>
+<p>Each variable is represented in a sheet according to the order above. They contains the name in both in English and Japanese.</p>
+<p>The data for each statistic is presented in a long format, with all variables as rows. The dataset includes 47 prefectures plus a row for the national average 全国.</p>
+<p>Note: The actual number of variables and observations may differ from the placeholder values in this documentation. Users should check the loaded data for the most accurate information.</p>
+<p>For each section, it is provided: a) a list of variables,<br>
+b) the years covered,<br>
+c) the calculation methods, and&nbsp; d) an interpretation of what the metrics mean and their significance.</p>
+<section id="section-1-education-教育-educational-institutions-教育施設" class="level2">
+<h2 class="anchored" data-anchor-id="section-1-education-教育-educational-institutions-教育施設">Section 1: Education 教育, Educational institutions 教育施設:</h2>
+<p>The variables covered in this section are:</p>
+<p>1.1 Elementary schools (per 100,000 population 6-11 years)<br>
+1.2 Junior high schools (per 100,000 population 12-14 years)<br>
+1.3 Senior high schools (per 100,000 population 15-17 years)<br>
+1.4 Kindergartens (per 100,000 population 3-5 years)<br>
+1.5 Day nurseries (per 100,000 population 0-5 years)<br>
+1.6 Authorized child centers (per 100,000 population 0-5 years)</p>
+<p>2.1 Elementary schools (per inhabitable area 100 k㎡)<br>
+2.2 Junior high schools (per inhabitable area 100 k㎡) pre-2019 / Number of lower secondary schools (per inhabitable area 100 k㎡) from 2019 onwards<br>
+2.3 Senior high schools (per inhabitable area 100 k㎡) pre-2019 / Number of upper secondary schools (per inhabitable area 100 k㎡) from 2019 onwards</p>
+<p>3.1 Ratio/percentage of public senior high/upper secondary schools<br>
+3.2 Ratio/percentage of public kindergartens<br>
+3.3 Ratio/percentage of public day nurseries</p>
+<section id="subsections-1.1---1.6" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-1.1---1.6">Subsections 1.1 - 1.6:</h3>
+<p>The data is separated in columns per 100,000 population by different age ranges:<br>
+Elementary schools 小学校数: 6-11<br>
+Junior high schools 中学校数: 12-14<br>
+Senior high schools 高等学校数: 15-17<br>
+Kindergartens 幼稚園数: 0-3<br>
+</p>
+<ul>
+<li>The years covered are: 2005, 2010, 2012-2020</li>
+</ul>
+<p>Day nurseries 保育所数: 3-5<br>
+</p>
+<ul>
+<li><p>The years covered are: 2005, 2010-2018, 2020</p></li>
+<li><p>The calculations are made by employment the formula: (Number of “variable” / Population aged “variable”“) * 100,000</p></li>
+<li><p>For example, if we take data for Kanagawa 神奈川県 in 2012 we have 184.9, it was calculated by (Number of elementary schools in Kanagawa / Population of 6-11 year olds in Kanagawa) * 100,000 = 184.9. This method allows for comparison between prefectures with different population sizes.</p></li>
+</ul>
+<p>One variable that was introduced later in the dataset was: Authorized child centers (per 100,000 population 0-5 years) 認定こども園数(０～５歳人口10万人当たり)<br>
+</p>
+<ul>
+<li><p>The years covered are 2015, 2018-2022</p></li>
+<li><p>The calculations are made by employing the formula: (Number of authorized child centers / Population aged 0-5 years) * 100,000</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of authorized child centers, counted the total population aged 0-5 years, divided the number of centers by the population, then multiplied the result by 100,000 to get the ratio per 100,000 children.</p></li>
+<li><p>This metric provides insights into the availability of authorized child centers across different regions of Japan relative to the young child population. It can reflect various factors such as local childcare policies, demographic trends, and societal needs in different areas. The data over time allows for analysis of trends in the expansion of authorized child centers. These figures can be important indicators of early childhood education and care provision, which may have implications for child development, work-life balance for parents, and broader social policies. Comparing the ratios between prefectures can reveal regional differences in childcare infrastructure and potentially inform resource allocation and policy decisions.</p></li>
+</ul>
+</section>
+<section id="subsections-2.1---2.3" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-2.1---2.3">Subsections 2.1 - 2.3</h3>
+<p>They contain information on Junior high schools 中学校数-Lower secondary schools and Senior high schools 高等学校数-Upper secondary schools per inhabitable area 100 k㎡ 可住地面積100k㎡当たり.</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employment the formula: (Number of “variable schools” / Inhabitable area in k㎡) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the total number of elementary schools, measured the total inhabitable area in square kilometers, divided the number of schools by the area, and then multiplied the result by 100 to get the number per 100 k㎡.</p></li>
+<li><p>This measure shows how densely or sparsely schools are distributed across the habitable land in each prefecture, which can be particularly relevant in a country like Japan with varying population densities and significant uninhabitable areas (like mountains).</p></li>
+</ul>
+</section>
+<section id="subsections-3.1---3.3" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-3.1---3.3">Subsections 3.1 - 3.3:</h3>
+<p>They contain information on the Ratio/percentage of public senior high/upper secondary schools 公立高等学校割合 (%), Ratio/percentage of public kindergartens 公立幼稚園割合 (%), and Ratio/percentage of public day nurseries/nurse centers 公営保育所割合 (%) for the years 2005, 2010, 2012-2022 (except for the last one, Ratio/percentage of public day nurseries/nurse centers, for which we have data for the years 2005, 2010-2018, 2020).</p>
+<ul>
+<li><p>The calculations are made by employment the formula: (Number of public “variable schools” / Total number of “variable schools”) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of public schools, counted the total number schools, divided the number of public schools by the total number, then multiplied the result by 100 to get the percentage. For example, the national average 全国 for 2012 is 73.4%, which means that in 2012, 73.4% of all senior high schools in Japan were public schools. It was named “ratio” until 2020, when the variable was changed to “percentage”, but they were calculated the same way.</p></li>
+<li><p>These metrics collectively provide a comprehensive view of the educational infrastructure across Japan. The number of institutions per population gives insight into the accessibility of education for different age groups, while the number per inhabitable area reflects the physical distribution of schools. The ratios/percentages of public institutions show the balance between public and private education provision. Together, these metrics can reveal regional differences in educational resources, urbanization patterns, and government priorities in education. They allow for comparisons between prefectures with different population sizes and geographical characteristics. Analyzing these metrics over time (2005, 2010, 2012/2011) can also indicate trends in educational policy and infrastructure development across Japan, such as changes in school distribution or shifts in the balance between public and private education. This information is important for understanding the educational landscape and informing policy decisions related to educational access and resource allocation.</p></li>
+</ul>
+</section>
+</section>
+<section id="section-2-education-教育-teachers-教員" class="level2">
+<h2 class="anchored" data-anchor-id="section-2-education-教育-teachers-教員">Section 2: Education 教育, Teachers 教員:</h2>
+<p>The variables covered in this section are:</p>
+<p>Ratio of female teachers (elementary school)<br>
+Ratio of female teachers (junior high/lower secondary school)</p>
+<section id="subsections-1.1---1.2" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-1.1---1.2">Subsections 1.1 - 1.2:</h3>
+<p>They contain information on the Ratio of female teachers 女子教員割合 (%) for elementary 小学校 and junior high/lower secondary school school 中学校.</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employment the formula: (Number of female “variable school” teachers / Total number of “variable school” school teachers) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of female “variable school” teachers, counted the total number of “variable school” teachers, divided the number of female teachers by the total number, then multiplied the result by 100 to get the percentage.</p></li>
+<li><p>These metrics provide insights into the gender balance among school teachers across different regions of Japan. They can reflect various factors such as societal norms, employment policies, and career preferences in different areas. Comparing the ratios between elementary and junior high/lower secondary school schools can reveal differences in gender distribution at different levels of education. The data over time allows for analysis of trends in gender representation in the teaching profession. These figures can be important indicators of gender equality in the education sector and may have implications for students’ perceptions of gender roles in society.</p></li>
+</ul>
+</section>
+</section>
+<section id="section-3-education-教育-pupils-生徒" class="level2">
+<h2 class="anchored" data-anchor-id="section-3-education-教育-pupils-生徒">Section 3: Education 教育, Pupils 生徒:</h2>
+<p>The variables covered in this section are:</p>
+<p>1.1 Elementary school pupils (per teacher)<br>
+1.2 Junior high school students (per teacher)<br>
+1.3 Senior high school students (per teacher)<br>
+1.4 Kindergarten pupils (per teacher)<br>
+1.5 Day nursery pupils (per nurse)</p>
+<p>2.1 Ratio of public senior high school students<br>
+2.2 Ratio of public kindergarteners<br>
+2.3 Ratio of public day nursery children</p>
+<p>3.1 Elementary school pupils (per class)<br>
+3.2 Junior high school students (per class)</p>
+<section id="subsections-1.1---1.5" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-1.1---1.5">Subsections 1.1 - 1.5:</h3>
+<p>They contain information on the number of Elementary school pupils 小学校児童数, Junior high school students 中学校生徒数, Senior high school students 高等学校生徒数, and Kindergarten pupils 幼稚園在園者数, all per teacher 教員１人当た.</p>
+<ul>
+<li>The years covered are 2005, 2010, 2012-2022</li>
+</ul>
+<p>And Day nursery pupils 保育所在所児数 per nurse 保育士１人当たり.</p>
+<ul>
+<li><p>The years covered are 2005, 2010-2018, 2020</p></li>
+<li><p>The calculations are made by employing the formula: (Total number of “variable school” students/pupils) / (Total number of “variable school” teachers/nurses)</p></li>
+<li><p>For each prefecture and year, they would have: counted the total number of “variable school” students/pupils, counted the total number of “variable school” teachers/nurses, then divided the number of students/pupils by the number of teachers/nurses.</p></li>
+</ul>
+</section>
+<section id="subsections-2.1---2.3-1" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-2.1---2.3-1">Subsections 2.1 - 2.3:</h3>
+<p>They contain information on the Ratio of public senior high school 公立高等学校生徒比率 (%), and Ratio of public kindergarteners 公立幼稚園在園者比率 (%).</p>
+<ul>
+<li>The years covered are 2005, 2010, 2012-2022</li>
+</ul>
+<p>They contain information on the Ratio of public day nursery children 公営保育所在所児比率 (%).</p>
+<ul>
+<li><p>The years covered are 2005, 2010-2018, 2020-2021</p></li>
+<li><p>The calculations are made by employing the formula: (Number of students/pupils/children in public “variable schools” / Total number of “variable school” students/pupils/children) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of students/pupils/children in public “variable school”, counted the total number of students/pupils/children (public and private), divided the number of public “variable school” students/pupils/children by the total, then multiplied the result by 100 to get the percentage.</p></li>
+</ul>
+</section>
+<section id="subsections-3.1---3.2" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-3.1---3.2">Subsections 3.1 - 3.2:</h3>
+<p>They contain information on the number of Elementary school pupils per class 小学校児童数 (１学級当たり, 人), and Junior high school students 中学校生徒数 (１学級当たり, 人).</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employing the formula: (Total number of “variable school” students) / (Total number of classes in “variable school”)</p></li>
+<li><p>For each prefecture and year, they would have: counted the total number of “variable school” students, counted the total number of classes in “variable school”, then divided the number of students by the number of classes.</p></li>
+<li><p>These metrics provide a multifaceted view of the education system in Japan, from early childhood through high school. The student-to-teacher and student-to-class ratios offer insights into the resources available to students and the potential quality of individual attention they might receive. The ratios of public institution attendance reflect the balance between public and private education in different regions, which can indicate both government priorities and societal preferences. Together, these metrics can reveal regional differences in educational resources, class sizes, and the structure of the education system. Comparing these metrics over time can also indicate trends in educational policy and practice across Japan, such as efforts to reduce class sizes or shifts in the balance between public and private education.</p></li>
+</ul>
+</section>
+</section>
+<section id="section-4-education-教育-junior-colleges-colleges-and-universities-短期大学大学" class="level2">
+<h2 class="anchored" data-anchor-id="section-4-education-教育-junior-colleges-colleges-and-universities-短期大学大学">Section 4: Education 教育, Junior colleges, colleges and universities 短期大学・大学:</h2>
+<p>The variables covered in this section are:</p>
+<p>1.1 Junior colleges (per 100,000 persons)<br>
+1.2 Colleges and universities (per 100,000 persons)<br>
+</p>
+<p>2.1 Entrance capacity index of junior colleges<br>
+2.2 Entrance capacity index of colleges and universities</p>
+<p>3.1 Ratio of students of national colleges + universities to all students<br>
+3.2 Ratio of students of public colleges and universities to all students<br>
+3.3 Ratio of students of private colleges and universities to all students</p>
+<section id="subsections-1.1---1.2-1" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-1.1---1.2-1">Subsections 1.1 - 1.2:</h3>
+<p>They contain information on the Number of Junior Colleges (per 100,000 persons) 短期大学数 (人口10万人当たり), Number of Colleges and Universities (per 100,000 persons) 大学数 (人口10万人当たり).</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employing the formula: (Number of institutions) / (Total population) * 100,000</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of institutions, obtained the total population, divided the number of institutions by the population, then multiplied the result by 100,000.</p></li>
+</ul>
+</section>
+<section id="subsections-2.1---2.2" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-2.1---2.2">Subsections 2.1 - 2.2:</h3>
+<p>They contain information on Entrance Capacity Index of Junior Colleges 短期大学収容力指数 and Entrance Capacity Index of Colleges and Universities 大学収容力指数.</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employing the formula: (Number of new entrants × 100) / (Number of high school graduates who advanced to junior colleges or universities in the previous year)</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of new entrants, counted the number of high school graduates who advanced to junior colleges or universities in the previous year, divided the number of new entrants by the number of advancing graduates, then multiplied the result by 100.</p></li>
+</ul>
+</section>
+<section id="subsections-3.1---3.3-1" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-3.1---3.3-1">Subsections 3.1 - 3.3:</h3>
+<p>They contain information on the Ratio (%) of students in National Colleges and Universities 国立大学学生数割合, Ratio of students in Public Colleges and Universities 公立大学学生数割合, and Ratio of students in Private Colleges and Universities 私立大学学生数割合.</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employing the formula: (Number of students in national/public/private institutions) / (Total number of university students) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of students in national, public, or private institutions, counted the total number of university students, divided the number of students in each category by the total, then multiplied the result by 100 to get the percentage.</p></li>
+<li><p>These metrics provide a comprehensive view of higher education in Japan. The number of institutions per capita indicates the accessibility of higher education in different regions. The entrance capacity index shows how well the supply of higher education spots meets the demand from high school graduates. The ratios of students in national, public, and private institutions reflect the structure of the higher education system in each prefecture. Together, these metrics can reveal regional differences in educational opportunities, the balance between different types of institutions, and potentially, the educational priorities or strategies of different prefectures. Comparing these metrics over time can also indicate trends in the development of Japan’s higher education system.</p></li>
+</ul>
+</section>
+</section>
+<section id="section-5-education-教育-speciality-schools-and-miscellaneous-schools-専修学校各種学校" class="level2">
+<h2 class="anchored" data-anchor-id="section-5-education-教育-speciality-schools-and-miscellaneous-schools-専修学校各種学校">Section 5: Education 教育, Speciality schools and miscellaneous schools 専修学校・各種学校:</h2>
+<p>The variables covered in this section are:</p>
+<p>1.1 Speciality schools (per 100,000 persons)<br>
+1.2 Miscellaneous schools (per 100,000 persons)</p>
+<p>2.1 Students enrolled in speciality schools (per 1,000 persons)/Number of specialized training college students (per 1,000 persons)<br>
+2.2 Students enrolled in miscellaneous schools (per 1,000 persons)</p>
+<section id="subsections-1.1---1.2-2" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-1.1---1.2-2">Subsections 1.1 - 1.2:</h3>
+<p>They contain information on the Number of Speciality Schools per 100,000 persons 専修学校数 (人口10万人当たり)/Number of specialized training college students (new English nomenclature in 2020/2021/2022), Number of Miscellaneous Schools per 100,000 persons 各種学校数 (人口10万人当たり).</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employing the formula: (Number of schools) / (Total population) * 100,000.</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of schools, obtained the total population, divided the number of schools by the population, then multiplied the result by 100,000.</p></li>
+<li><p>These calculations provide insights into the prevalence and utilization of speciality and miscellaneous schools across Japan. Speciality schools 専修学校 typically offer practical vocational education, while miscellaneous schools 各種学校 cover a wide range of educational institutions that don’t fit into other categories, such as international schools or schools for specific skills like cooking or languages. The rates of schools and enrolled students per capita can indicate the diversity of educational options available in different prefectures, the demand for specialized or vocational education, and potentially reflect regional economic needs or cultural preferences for different types of education.</p></li>
+</ul>
+</section>
+<section id="subsections-2.1---2.2-1" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-2.1---2.2-1">Subsections 2.1 - 2.2:</h3>
+<p>They contain information on the number of Students enrolled in Speciality Schools per 1,000 persons 専修学校生徒数 (人口千人当たり) and Students enrolled in Miscellaneous Schools per 1,000 persons 各種学校生徒数 (人口千人当たり).</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employing the formula: (Number of enrolled students) / (Total population) * 1,000</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of enrolled students, obtained the total population, divided the number of students by the population, then multiplied the result by 1,000.</p></li>
+<li><p>These calculations allow for comparisons of speciality and miscellaneous schools across prefectures and over time. They provide insights into the availability and popularity of these types of educational institutions in different regions of Japan, taking into account the population differences between prefectures.</p></li>
+</ul>
+</section>
+</section>
+<section id="section-6-education-教育-educational-diffusion-rates-教育普及度" class="level2">
+<h2 class="anchored" data-anchor-id="section-6-education-教育-educational-diffusion-rates-教育普及度">Section 6: Education 教育, Educational diffusion rates 教育普及度:</h2>
+<p>The variables covered in this section are:</p>
+<p>1.1 Educational diffusion rate (kindergartens)<br>
+1.2 Educational diffusion rate (day nurseries)</p>
+<p>2.1 Working rate of day nurseries against the capacity</p>
+<p>3.1 Ratio of long-term absentees from elementary school (30 days and more for a school year) (per 1,000 pupils)<br>
+3.2 Ratio of long-term absentees from junior high school (30 days and more for a school year) (per 1,000 students)<br>
+3.3 Ratio of long-term absentees from elementary school due to diseases (30 days and more for a school year) (per 1,000 pupils)<br>
+3.4 Ratio of long-term absentees from junior high school due to diseases (30 days and more for a school year) (per 1,000 students)<br>
+3.5 Ratio of long-term absentees from elementary school pupils due to refusal to attend school (30 days and more for a school year)(per 1,000 pupils)<br>
+3.6 Ratio of long-term absentees from junior high school students due to refusal to attend school (30 days and more for a school year)(per 1,000 students)</p>
+<p>4.1 Ratio of junior high graduates going to further education<br>
+4.2 Ratio of senior high graduates going to further education</p>
+<p>5.1 Ratio of high school graduates entering colleges and universities in the same prefecture</p>
+<p>6.1 Ratio of people having completed up to elementary or junior high school only<br>
+6.2 Ratio of people having completed up to senior high school only<br>
+6.3 Ratio of people having completed up to junior colleges or equivalent<br>
+6.4 Ratio of people having completed up to colleges and universities</p>
+<section id="subsections-1.1---1.2-3" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-1.1---1.2-3">Subsections 1.1 - 1.2:</h3>
+<p>They contain information on the Educational diffusion rate (%) 教育普及度 for kindergartens 幼稚園, and day nurseries 保育所.</p>
+<ul>
+<li><p>The years covered are 2005, 2010-2018, 2020</p></li>
+<li><p>The calculations are made by employing the formula: (Number of graduates) / (Number of first-grade elementary school students) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of kindergarten graduates and day nursery graduates, counted the number of first-grade elementary school students, divided the number of graduates from each type of institution by the number of first-grade students, then multiplied the result by 100 to get the percentage.</p></li>
+<li><p>Both measures use the number of first-grade elementary school students as the denominator, which represents the total cohort of children entering formal education. These rates help to understand: the prevalence of early childhood education in each prefecture, the balance between kindergartens and day nurseries in providing pre-elementary education, and trends in early childhood education participation over time (as data is provided for 2005, 2010, and 2011). The comparison between these two rates can also give insights into the preferences or availability of different types of early childhood education in various regions of Japan.</p></li>
+</ul>
+</section>
+<section id="subsection-2.1" class="level3">
+<h3 class="anchored" data-anchor-id="subsection-2.1">Subsection 2.1:</h3>
+<p>It contains information on the Working rate of day nurseries against the capacity 保育所利用率 (%).</p>
+<ul>
+<li><p>The years covered are 2005, 2010-2018, 2020</p></li>
+<li><p>The calculations are made by employing the formula: (Number of children in day nurseries) / (Capacity of day nurseries) * 100.</p></li>
+<li><p>For each prefecture and year, they would have: counted the total number of children currently enrolled in day nurseries, determined the total capacity of all day nurseries in the prefecture, divided the number of enrolled children by the total capacity, then multiplied the result by 100 to get the percentage.</p></li>
+<li><p>This rate provides insights into the demand for day nursery services in each prefecture, how efficiently the existing day nursery infrastructure is being used, and potential shortages or surpluses in day nursery capacity. A rate close to or exceeding 100would indicate high demand and potentially a need for more day nursery facilities, while a lower rate might suggest underutilization of existing facilities.</p></li>
+</ul>
+</section>
+<section id="subsections-3.1---3.6" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-3.1---3.6">Subsections 3.1 - 3.6:</h3>
+<p>They contain information on the Ratio of long-term absentees from elementary school 小学校長期欠席児童比率 (per 1,000 pupils), Ratio of long-term absentees from junior high school 中学校長期欠席生徒比率 (per 1,000 students), Ratio of long-term absentees from elementary school due to diseases 病気による小学校長期欠席児童比率 (per 1,000 pupils), Ratio of long-term absentees from junior high school due to diseases 病気による中学校長期欠席生徒比率 (per 1,000 students), Ratio of long-term absentees from elementary school due to school refusal 不登校による小学校長期欠席児童比率 (per 1,000 pupils), Ratio of long-term absentees from junior high school due to school refusal 不登校による中学校長期欠席生徒比率 (per 1,000 students).</p>
+<ul>
+<li><p>The years covered are 2005, 2010-2018, 2020-2021</p></li>
+<li><p>The calculations are made by employing the formula: (Number of long-term absentees) / (Total number of students) * 1,000</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of long-term absentees for each category (total, due to illness, due to school refusal) for both elementary and junior high schools, divided these numbers by the total number of students in elementary or junior high schools respectively, then multiplied the result by 1,000 to get the rate per 1,000 students. These rates allow for comparison of absenteeism across prefectures and over time, providing insights into overall attendance issues, health-related absences, and school refusal problems in different regions of Japan.</p></li>
+</ul>
+</section>
+<section id="subsections-4.1---4.2" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-4.1---4.2">Subsections 4.1 - 4.2:</h3>
+<p>They contain information on the Ratio (%) of junior high graduates going to further education 中学校卒業者の進学率, and Ratio of senior high graduates going to further education 高等学校卒業者の進学率.</p>
+<ul>
+<li><p>The years covered are 2005, 2010-2018, 2020-2021</p></li>
+<li><p>The calculations are made by employing the formula: (Number of graduates going to further education) / (Total number of graduates) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of junior high or senior high graduates going to further education, counted the total number of graduates from each level, divided the number going to further education by the total number of graduates, then multiplied the result by 100 to get the percentage.</p></li>
+<li><p>These rates provide insights into the progression of students through the education system, indicating the proportion of students who continue their education after completing junior high and senior high school. They can reflect educational aspirations, access to higher education, and potentially economic factors influencing educational decisions in different regions of Japan.</p></li>
+</ul>
+</section>
+<section id="subsection-5.1" class="level3">
+<h3 class="anchored" data-anchor-id="subsection-5.1">Subsection 5.1:</h3>
+<p>It contain information on the Ratio (%) of high school graduates entering colleges and universities in the same prefecture 出身高校所在地県の大学への入学者割合.</p>
+<ul>
+<li><p>The years covered are 2005, 2010, 2012-2022</p></li>
+<li><p>The calculations are made by employing the formula: (Number of high school graduates entering colleges/universities in the same prefecture) / (Total number of high school graduates entering colleges/universities) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of high school graduates entering colleges/universities in the same prefecture, counted the total number of high school graduates entering colleges/universities anywhere, divided the number entering in-prefecture institutions by the total number entering higher education, then multiplied the result by 100 to get the percentage.</p></li>
+<li><p>This rate provides insights into the retention of students within their home prefectures for higher education. It can reflect factors such as the quality and variety of higher education options within each prefecture, student preferences for staying close to home or moving away for college, and potentially economic factors influencing these decisions.</p></li>
+</ul>
+</section>
+<section id="subsections-6.1---6.4" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-6.1---6.4">Subsections 6.1 - 6.4:</h3>
+<p>They contain information on the Ratio of people having completed up to elementary or junior high school 最終学歴が小学・中学卒の者の割合, Ratio of people having completed up to senior high school 最終学歴が高校・旧中卒の者の割合, Ratio of people having completed up to junior colleges or equivalent 最終学歴が短大・高専卒の者の割合, and Ratio of people having completed up to colleges and universities 最終学歴が大学・大学院卒の者の割合.</p>
+<ul>
+<li><p>The years covered are 1990, 2000, 2010, 2020</p></li>
+<li><p>The calculations are made by employing the formula: (Number of people with specific education level) / (Total number of graduates) * 100</p></li>
+<li><p>For each prefecture and year, they would have: counted the number of people whose highest level of education completed was elementary/junior high school, senior high school, junior college/technical college, or university/graduate school; counted the total number of graduates; divided the number for each education level by the total number of graduates; then multiplied the result by 100 to get the percentage.</p></li>
+<li><p>These rates provide a comprehensive picture of the educational attainment levels across different regions of Japan over time. They can reflect changes in access to education, societal expectations for education, economic factors influencing educational decisions, and potentially the changing demands of the job market in different areas. The comparison across years (1990, 2000, 2010) allows for analysis of trends in educational attainment over two decades.</p></li>
+</ul>
+</section>
+</section>
+<section id="section-7-education-教育-education-expenditure-per-pupil-1人当たりの学校等教育費" class="level2">
+<h2 class="anchored" data-anchor-id="section-7-education-教育-education-expenditure-per-pupil-1人当たりの学校等教育費">Section 7: Education 教育, Education expenditure per pupil 1人当たりの学校等教育費:</h2>
+<p>The variables covered in this subsection are:</p>
+<p>1.1 Elementary school educational expenses (per pupils)<br>
+1.2 Junior high school educational expenses (per students)<br>
+1.3 High school educational expenses (Full-time senior) (per students)<br>
+1.4 Kindergarten educational expenses (per Kindergarten pupils)<br>
+1.5 Authorized child centers educational expenses (Kindergarten-and-day-care center type) (per pupils)</p>
+<section id="subsections-1.1---1.5-1" class="level3">
+<h3 class="anchored" data-anchor-id="subsections-1.1---1.5-1">Subsections 1.1 - 1.5:</h3>
+<p>They contain information on Elementary school educational expenses 小学校教育費 (per pupils, in yen) (児童１人当たり, 円), Junior high school educational expenses 中学校教育費 (per students, in yen) (生徒１人当たり, 円), High school educational expenses [Full-time senior] 高等学校教育費［全日制］(per students, in yen) (生徒１人当たり,円), Kindergarten educational expenses 幼稚園教育費 (per Kindergarten pupils, yen)（在園者１人当たり, 円), Authorized child centers educational expenses [Kindergarten-and-day-care center type] 幼保連携型認定こども園教育費 (per pupils, yen)（在園者１人当たり, 円).</p>
+<ul>
+<li><p>The years covered are 2000, 2005, 2010-2017, 2019 for Elementary school educational expenses</p></li>
+<li><p>The years covered are 2000, 2005, 2010-2017, 2019-2020 for Junior high school educational expenses and High school educational expenses</p></li>
+<li><p>The years covered are 2000, 2005, 2010-2015, 2020 for Kindergarten educational expenses</p></li>
+<li><p>The years covered are 2015-2017, 2019-2020 for Authorized child centers educational expenses</p></li>
+<li><p>The calculations are made by employing the formula: (Total educational expenses for the specific school type) / (Total number of students in that school type)</p></li>
+<li><p>For each prefecture and year, they would have: calculated the total educational expenses for each school type (elementary, junior high, high school, kindergarten, authorized child centers), counted the total number of students in each school type, then divided the total expenses by the number of students to get the per-pupil expenditure.</p></li>
+</ul>
+<p>According to the data dictionary: - For elementary schools (E8102), junior high schools (E8103), and high schools (E8104), the denominator is listed as “School education expenditure per student” for each respective school type. - For kindergartens (E8101) and authorized child centers (E810101), the denominator is also listed as “School education expenditure per student” for each respective type.</p>
+<ul>
+<li><p>These metrics provide insights into the financial investment in education across different levels of schooling and across different prefectures in Japan. They allow for comparisons of educational spending between different types of schools and between different regions. The data over time enables analysis of trends in educational funding, which could reflect changes in educational policies, economic conditions, or demographic shifts. Higher per-pupil expenditures might indicate greater resources available for education, potentially leading to better facilities, smaller class sizes, or more comprehensive educational programs. However, it’s important to consider these figures alongside other metrics, such as educational outcomes and regional economic factors, for a more complete understanding of the education system’s efficiency and effectiveness.</p></li>
+<li><p>The inclusion of authorized child centers (Kindergarten-and-day-care center type) in this category reflects Japan’s evolving early childhood education and care system, integrating traditional kindergartens with day-care services. This allows for analysis of resource allocation in these integrated facilities compared to traditional kindergartens and other school types.</p></li>
+<li><p>When interpreting these statistics, researchers and policymakers should be aware of potential differences in cost structures between urban and rural areas, variations in local funding models, and any changes in the definition or scope of educational expenses over time. Cross-referencing these expenditure figures with other educational and demographic data can provide a more comprehensive picture of the educational landscape across Japan.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "コピーしました");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "コピーしました");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
