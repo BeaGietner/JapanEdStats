@@ -31,8 +31,8 @@ When using this dataset, please cite both this repository and the original data 
 
 ```bibtex
 @misc{e-stat2024,
-  title = {School Basic Survey (学校基本調査)},
-  author = {{Ministry of Education, Culture, Sports, Science and Technology}},
+  title = {System of Social and Demographic Statistics (SSDS) - Education Indicators (社会人口統計体系・教育関連指標)},
+  author = {{Ministry of Internal Affairs and Communications}},
   year = {2024},
   url = {https://www.e-stat.go.jp/},
   note = {Accessed through e-Stat (政府統計の総合窓口)}
