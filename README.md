@@ -1,13 +1,12 @@
 # Japanese Education Statistics Dataset
-
-This repository contains a compiled dataset of Japanese education statistics from roughly 2000 to 2022 to most variables. The data has been aggregated from the [School Basic Survey (学校基本調査)](https://www.e-stat.go.jp/) provided by the Japanese Ministry of Education, Culture, Sports, Science and Technology (MEXT) through e-Stat.
+This repository contains a compiled dataset of Japanese education statistics from roughly 2000 to 2022 for most variables. The data has been aggregated from the System of Social and Demographic Statistics (SSDS) - Education Indicators (社会人口統計体系・教育関連指標) provided by the Japanese Ministry of Internal Affairs and Communications through e-Stat.
 
 ## Data Source Citation
-
 All data in this repository is sourced from:
 - e-Stat (政府統計の総合窓口)
-- School Basic Survey (学校基本調査)
-- Ministry of Education, Culture, Sports, Science and Technology (文部科学省)
+- System of Social and Demographic Statistics (SSDS) (社会人口統計体系)
+  - Education Indicators (教育関連指標)
+- Ministry of Internal Affairs and Communications (総務省)
 - URL: https://www.e-stat.go.jp/
 
 ## Dataset Description
