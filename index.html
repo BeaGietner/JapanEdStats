@@ -3133,22 +3133,14 @@ vertical-align: -.125em;
 <h2 data-number="2.2" class="anchored" data-anchor-id="prefecture-codes-and-names"><span class="header-section-number">2.2</span> Prefecture Codes and Names</h2>
 <p>The dataset includes all 47 prefectures of Japan plus the national average (code 0). Here is the complete list, with coordinates of prefectural capitals:</p>
 <table class="table">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 14%">
-<col style="width: 15%">
-<col style="width: 17%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Code</th>
 <th>Japanese Name</th>
 <th>English Name</th>
 <th>Region</th>
-<th>Latitude (N+)</th>
-<th>Longitude (E+)</th>
+<th>Lat (N+)</th>
+<th>Long (E+)</th>
 </tr>
 </thead>
 <tbody>
@@ -3555,9 +3547,11 @@ vertical-align: -.125em;
 <p>Each variable is represented in a sheet according to the order above. They contains the name in both in English and Japanese.</p>
 <p>The data for each statistic is presented in a long format, with all variables as rows. The dataset includes 47 prefectures plus a row for the national average 全国.</p>
 <p>Note: The actual number of variables and observations may differ from the placeholder values in this documentation. Users should check the loaded data for the most accurate information.</p>
-<p>For each section, it is provided: a) a list of variables,<br>
+<p>For each section, it is provided:<br>
+a) a list of variables,<br>
 b) the years covered,<br>
-c) the calculation methods, and  d) an interpretation of what the metrics mean and their significance.</p>
+c) the calculation methods,<br>
+d) an interpretation of what the metrics mean and their significance.</p>
 <section id="section-1-education-教育-educational-institutions-教育施設" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="section-1-education-教育-educational-institutions-教育施設"><span class="header-section-number">3.1</span> Section 1: Education 教育, Educational institutions 教育施設:</h2>
 <p>The variables covered in this section are:</p>
@@ -3588,7 +3582,7 @@ Kindergartens 幼稚園数: 0-3<br>
 </p>
 <ul>
 <li><p>The years covered are: 2005, 2010-2018, 2020</p></li>
-<li><p>The calculations are made by employment the formula: (Number of “variable” / Population aged “variable”“) * 100,000</p></li>
+<li><p>The calculations are made by employing the formula: (Number of “variable” / Population aged “variable”“) * 100,000</p></li>
 <li><p>For example, if we take data for Kanagawa 神奈川県 in 2012 we have 184.9, it was calculated by (Number of elementary schools in Kanagawa / Population of 6-11 year olds in Kanagawa) * 100,000 = 184.9. This method allows for comparison between prefectures with different population sizes.</p></li>
 </ul>
 <p>One variable that was introduced later in the dataset was: Authorized child centers (per 100,000 population 0-5 years) 認定こども園数(０～５歳人口10万人当たり)<br>
@@ -3605,7 +3599,7 @@ Kindergartens 幼稚園数: 0-3<br>
 <p>They contain information on Junior high schools 中学校数-Lower secondary schools and Senior high schools 高等学校数-Upper secondary schools per inhabitable area 100 k㎡ 可住地面積100k㎡当たり.</p>
 <ul>
 <li><p>The years covered are 2005, 2010, 2012-2022</p></li>
-<li><p>The calculations are made by employment the formula: (Number of “variable schools” / Inhabitable area in k㎡) * 100</p></li>
+<li><p>The calculations are made by employing the formula: (Number of “variable schools” / Inhabitable area in k㎡) * 100</p></li>
 <li><p>For each prefecture and year, they would have: counted the total number of elementary schools, measured the total inhabitable area in square kilometers, divided the number of schools by the area, and then multiplied the result by 100 to get the number per 100 k㎡.</p></li>
 <li><p>This measure shows how densely or sparsely schools are distributed across the habitable land in each prefecture, which can be particularly relevant in a country like Japan with varying population densities and significant uninhabitable areas (like mountains).</p></li>
 </ul>
@@ -3614,9 +3608,9 @@ Kindergartens 幼稚園数: 0-3<br>
 <h3 data-number="3.1.3" class="anchored" data-anchor-id="subsections-3.1---3.3"><span class="header-section-number">3.1.3</span> Subsections 3.1 - 3.3:</h3>
 <p>They contain information on the Ratio/percentage of public senior high/upper secondary schools 公立高等学校割合 (%), Ratio/percentage of public kindergartens 公立幼稚園割合 (%), and Ratio/percentage of public day nurseries/nurse centers 公営保育所割合 (%) for the years 2005, 2010, 2012-2022 (except for the last one, Ratio/percentage of public day nurseries/nurse centers, for which we have data for the years 2005, 2010-2018, 2020).</p>
 <ul>
-<li><p>The calculations are made by employment the formula: (Number of public “variable schools” / Total number of “variable schools”) * 100</p></li>
+<li><p>The calculations are made by employing the formula: (Number of public “variable schools” / Total number of “variable schools”) * 100</p></li>
 <li><p>For each prefecture and year, they would have: counted the number of public schools, counted the total number schools, divided the number of public schools by the total number, then multiplied the result by 100 to get the percentage. For example, the national average 全国 for 2012 is 73.4%, which means that in 2012, 73.4% of all senior high schools in Japan were public schools. It was named “ratio” until 2020, when the variable was changed to “percentage”, but they were calculated the same way.</p></li>
-<li><p>These metrics collectively provide a comprehensive view of the educational infrastructure across Japan. The number of institutions per population gives insight into the accessibility of education for different age groups, while the number per inhabitable area reflects the physical distribution of schools. The ratios/percentages of public institutions show the balance between public and private education provision. Together, these metrics can reveal regional differences in educational resources, urbanization patterns, and government priorities in education. They allow for comparisons between prefectures with different population sizes and geographical characteristics. Analyzing these metrics over time (2005, 2010, 2012/2011) can also indicate trends in educational policy and infrastructure development across Japan, such as changes in school distribution or shifts in the balance between public and private education. This information is important for understanding the educational landscape and informing policy decisions related to educational access and resource allocation.</p></li>
+<li><p>These metrics collectively provide a comprehensive view of the educational infrastructure across Japan. The number of institutions per population gives insight into the accessibility of education for different age groups, while the number per inhabitable area reflects the physical distribution of schools. The ratios/percentages of public institutions show the balance between public and private education provision. Together, these metrics can reveal regional differences in educational resources, urbanization patterns, and government priorities in education. They allow for comparisons between prefectures with different population sizes and geographical characteristics. Analyzing these metrics over time can also indicate trends in educational policy and infrastructure development across Japan, such as changes in school distribution or shifts in the balance between public and private education. This information is important for understanding the educational landscape and informing policy decisions related to educational access and resource allocation.</p></li>
 </ul>
 </section>
 </section>
@@ -3630,7 +3624,7 @@ Ratio of female teachers (junior high/lower secondary school)</p>
 <p>They contain information on the Ratio of female teachers 女子教員割合 (%) for elementary 小学校 and junior high/lower secondary school school 中学校.</p>
 <ul>
 <li><p>The years covered are 2005, 2010, 2012-2022</p></li>
-<li><p>The calculations are made by employment the formula: (Number of female “variable school” teachers / Total number of “variable school” school teachers) * 100</p></li>
+<li><p>The calculations are made by employing the formula: (Number of female “variable school” teachers / Total number of “variable school” school teachers) * 100</p></li>
 <li><p>For each prefecture and year, they would have: counted the number of female “variable school” teachers, counted the total number of “variable school” teachers, divided the number of female teachers by the total number, then multiplied the result by 100 to get the percentage.</p></li>
 <li><p>These metrics provide insights into the gender balance among school teachers across different regions of Japan. They can reflect various factors such as societal norms, employment policies, and career preferences in different areas. Comparing the ratios between elementary and junior high/lower secondary school schools can reveal differences in gender distribution at different levels of education. The data over time allows for analysis of trends in gender representation in the teaching profession. These figures can be important indicators of gender equality in the education sector and may have implications for students’ perceptions of gender roles in society.</p></li>
 </ul>
@@ -3780,7 +3774,7 @@ Ratio of female teachers (junior high/lower secondary school)</p>
 <li><p>The years covered are 2005, 2010-2018, 2020</p></li>
 <li><p>The calculations are made by employing the formula: (Number of graduates) / (Number of first-grade elementary school students) * 100</p></li>
 <li><p>For each prefecture and year, they would have: counted the number of kindergarten graduates and day nursery graduates, counted the number of first-grade elementary school students, divided the number of graduates from each type of institution by the number of first-grade students, then multiplied the result by 100 to get the percentage.</p></li>
-<li><p>Both measures use the number of first-grade elementary school students as the denominator, which represents the total cohort of children entering formal education. These rates help to understand: the prevalence of early childhood education in each prefecture, the balance between kindergartens and day nurseries in providing pre-elementary education, and trends in early childhood education participation over time (as data is provided for 2005, 2010, and 2011). The comparison between these two rates can also give insights into the preferences or availability of different types of early childhood education in various regions of Japan.</p></li>
+<li><p>Both measures use the number of first-grade elementary school students as the denominator, which represents the total cohort of children entering formal education. These rates help to understand: the prevalence of early childhood education in each prefecture, the balance between kindergartens and day nurseries in providing pre-elementary education, and trends in early childhood education participation over time. The comparison between these two rates can also give insights into the preferences or availability of different types of early childhood education in various regions of Japan.</p></li>
 </ul>
 </section>
 <section id="subsection-2.1" class="level3" data-number="3.6.2">
@@ -3790,7 +3784,7 @@ Ratio of female teachers (junior high/lower secondary school)</p>
 <li><p>The years covered are 2005, 2010-2018, 2020</p></li>
 <li><p>The calculations are made by employing the formula: (Number of children in day nurseries) / (Capacity of day nurseries) * 100.</p></li>
 <li><p>For each prefecture and year, they would have: counted the total number of children currently enrolled in day nurseries, determined the total capacity of all day nurseries in the prefecture, divided the number of enrolled children by the total capacity, then multiplied the result by 100 to get the percentage.</p></li>
-<li><p>This rate provides insights into the demand for day nursery services in each prefecture, how efficiently the existing day nursery infrastructure is being used, and potential shortages or surpluses in day nursery capacity. A rate close to or exceeding 100would indicate high demand and potentially a need for more day nursery facilities, while a lower rate might suggest underutilization of existing facilities.</p></li>
+<li><p>This rate provides insights into the demand for day nursery services in each prefecture, how efficiently the existing day nursery infrastructure is being used, and potential shortages or surpluses in day nursery capacity. A rate close to or exceeding 100 would indicate high demand and potentially a need for more day nursery facilities, while a lower rate might suggest underutilization of existing facilities.</p></li>
 </ul>
 </section>
 <section id="subsections-3.1---3.6" class="level3" data-number="3.6.3">
@@ -3829,7 +3823,7 @@ Ratio of female teachers (junior high/lower secondary school)</p>
 <li><p>The years covered are 1990, 2000, 2010, 2020</p></li>
 <li><p>The calculations are made by employing the formula: (Number of people with specific education level) / (Total number of graduates) * 100</p></li>
 <li><p>For each prefecture and year, they would have: counted the number of people whose highest level of education completed was elementary/junior high school, senior high school, junior college/technical college, or university/graduate school; counted the total number of graduates; divided the number for each education level by the total number of graduates; then multiplied the result by 100 to get the percentage.</p></li>
-<li><p>These rates provide a comprehensive picture of the educational attainment levels across different regions of Japan over time. They can reflect changes in access to education, societal expectations for education, economic factors influencing educational decisions, and potentially the changing demands of the job market in different areas. The comparison across years (1990, 2000, 2010) allows for analysis of trends in educational attainment over two decades.</p></li>
+<li><p>These rates provide a comprehensive picture of the educational attainment levels across different regions of Japan over time. They can reflect changes in access to education, societal expectations for education, economic factors influencing educational decisions, and potentially the changing demands of the job market in different areas. The comparison across years allows for analysis of trends in educational attainment over two decades.</p></li>
 </ul>
 </section>
 </section>
