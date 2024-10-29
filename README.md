@@ -1,5 +1,5 @@
 # Japanese Education Statistics Dataset
-This repository contains a compiled dataset of Japanese education statistics from roughly 2000 to 2022 for most variables. The data has been aggregated from the System of Social and Demographic Statistics (SSDS) - Education Indicators (社会人口統計体系・教育関連指標) provided by the Japanese Ministry of Internal Affairs and Communications through e-Stat. The Government Statistical Code (政府統計コード) is 00200502.
+This repository contains a compiled dataset of Japanese education statistics from roughly 2000 to 2022 for most variables. The data has been aggregated from the System of Social and Demographic Statistics (SSDS) - Education Indicators (社会人口統計体系・教育関連指標) provided by the Japanese Ministry of Internal Affairs and Communications through e-Stat. The Government Statistical Code (政府統計コード) is 00200502. In doubt, always double check on the website https://www.e-stat.go.jp/dbview?sid=0000010205. 
 
 ## Data Source Citation
 All data in this repository is sourced from:
