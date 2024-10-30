@@ -203,6 +203,74 @@ The dataset includes all 47 prefectures of Japan plus the national average (code
 | | 1.4 Kindergarten expenses | 1995, 2000-2018, 2020 |
 | | 1.5 Authorized child centers expenses | 2015-2020 |
 
+# Japanese School Types Overview
+
+The Japanese education system includes several types of institutions:
+
+## Basic Education Institutions
+- Elementary Schools (小学校): Compulsory education for ages 6-12 (6 years)
+- Junior High Schools (中学校): Compulsory education for ages 12-15 (3 years)
+- Senior High Schools (高等学校): Optional education for ages 15-18 (3 years)
+
+## Early Childhood Education
+- Kindergartens (幼稚園): Educational institutions for children ages 3-5
+- Day Nurseries (保育所): Childcare facilities for children ages 0-5, primarily for working parents
+- Authorized Child Centers (認定こども園): Integrated centers offering both kindergarten education and daycare services
+
+## Higher Education
+- Junior Colleges (短期大学): 2-year institutions offering associate degrees
+- Universities (大学): 4-year institutions offering bachelor's degrees and graduate programs
+- Graduate Schools (大学院): Advanced degree programs (Master's and Doctoral)
+
+## Specialized Education
+- Specialized Training Colleges (専修学校): Vocational schools offering practical skills and qualifications
+- Miscellaneous Schools (各種学校): Schools that don't fit other categories, including international schools, language schools, and preparatory schools
+
+## Other Types
+- Special Needs Schools (特別支援学校): Schools for students with special educational needs
+- Secondary Education Schools (中等教育学校): Combined junior and senior high schools (6 years)
+- Technical Colleges (高等専門学校): 5-year technical education institutions starting after junior high school
+
+# Important Notes About the Japanese Education System
+
+## Administrative Structure
+- Schools can be National (国立), Public (公立), or Private (私立)
+- Public schools are primarily operated by local governments (prefectures and municipalities)
+- The Ministry of Education, Culture, Sports, Science and Technology (MEXT/文部科学省) oversees the entire system
+
+## Compulsory Education
+- Compulsory education (義務教育) covers 9 years: 6 years of elementary and 3 years of junior high school
+- It is free at public schools
+- Has an extremely high enrollment rate (near 100%)
+- School year starts in April and ends in March
+
+## School Transitions
+- Almost all students progress from elementary to junior high school (99%+)
+- High school enrollment rate is over 98%, though not compulsory
+- University/college enrollment rate has been increasing, reaching about 80% in recent years
+
+## Recent Trends and Changes
+- Declining student populations due to demographic changes
+- Increasing integration of kindergartens and day nurseries into authorized child centers
+- Growing number of international programs and English-language education
+- Introduction of new types of schools like compulsory education schools (義務教育学校) that combine elementary and junior high
+
+## Regional Variations
+- Urban areas typically have more private schools
+- Rural areas face challenges with maintaining schools due to population decline
+- Some regions have specific types of schools based on local needs (e.g., schools with dormitories in remote areas)
+
+## Funding and Expenses
+- Public schools are funded primarily through local and national government budgets
+- Private schools receive some government subsidies but charge tuition
+- Educational expenses can vary significantly between urban and rural areas
+
+Sources:\
+- MEXT (文部科学省), Ministry of Education, Culture, Sports, Science and Technology official website. Available in Japanese and English. [mext.go.jp/en/](https://www.mext.go.jp/en/)\
+- e-Stat, Portal Official Statistics of Japan. School Basic Survey: 00400001, Education Statistics: 00200502 [e-stat.go.jp](https://www.e-stat.go.jp/)\
+- NIER, National Institute for Educational Policy Research.  [nier.go.jp/English/](https://www.nier.go.jp/English/)\
+- JICA, Japan International Cooperation Agency.  [jica.go.jp/english/publications/](https://www.jica.go.jp/english/publications/)\
+- 日本教育学会 | Japan Society for the Study of Education. Academic research in Japanese education. [jsse.jp](http://www.jsse.jp/)
 
 # Sections Overview
 
