@@ -43,66 +43,66 @@ The dataset includes the following key variables:
 - sheet_name: String identifier for each variable name
 - value: Value of the specific educational statistic for that prefecture and year
 
-## Variables Names
+## Variables
 
-| Variable Name | Description | Japanese Description | Variable Code (unit) |
-|:--------------------------------|:------------|:-------------|:-------------|
-| 1.1.1 Elementary schools | Number of elementary schools per 100,000 population aged 6-11 years | 小学校数 (６～11歳人口10万人当たり) | #E0110101 (校) |
-| 1.1.2 Junior high schools | Number of junior high schools per 100,000 population aged 12-14 years | 中学校数 (12～14歳人口10万人当たり) | #E0110102 (校) |
-| 1.1.3 Senior high schools | Number of senior high schools per 100,000 population aged 15-17 years | 高等学校数 (15～17歳人口10万人当たり) | #E0110103 (校) |
-| 1.1.4 Kindergartens | Number of kindergartens per 100,000 population aged 3-5 years | 幼稚園数 (３～５歳人口10万人当たり) | #E0110104 (園) |
-| 1.1.5 Day nurseries | Number of day nurseries per 100,000 population aged 0-5 years | 保育所数 (０～５歳人口10万人当たり) | #E0110105 (所) |
-| 1.1.6 Authorized child centers | Number of authorized child centers per 100,000 population aged 0-5 years | 認定こども園数 (０～５歳人口10万人当たり) | #E0110106 (園) |
-| 1.2.1 Elementary schools area | Number of elementary schools per inhabitable area (100 km²) | 小学校数 (可住地面積100k㎡当たり) | #E0110201 (校) |
-| 1.2.2 Junior HS area | Number of junior high schools per inhabitable area (100 km²) | 中学校数 (可住地面積100k㎡当たり) | #E0110202 (校) |
-| 1.2.3 Senior HS area | Number of senior high schools per inhabitable area (100 km²) | 高等学校数 (可住地面積100k㎡当たり) | #E0110203 (校) |
-| 1.3.1 Ratio public senior HS | Percentage of senior high schools that are public institutions | 公立高等学校割合 | #E01303 (％) |
-| 1.3.2 Ratio public kindergarten | Percentage of kindergartens that are public institutions | 公立幼稚園割合 | #E01304 (％) |
-| 1.3.3 Ratio public day nurse. | Percentage of day nurseries that are public institutions | 公営保育所割合 | #E01305 (％) |
-| 2.1.1 ES female teachers ratio | Percentage of elementary school teachers who are female | 女子教員割合［小学校］ | #E0410201 (％) |
-| 2.1.2 JHS female teachers ratio | Percentage of junior high school teachers who are female | 女子教員割合［中学校］ | #E0410202 (％) |
-| 3.1.1 ES pupils per teacher | Number of elementary school pupils per teacher | 小学校児童数 (教員１人当たり) | #E0510301 (人:person) |
-| 3.1.2 JHS students per teacher | Number of junior high school students per teacher | 中学校生徒数 (教員１人当たり) | #E0510302 (人:person) |
-| 3.1.3 SHS students per teacher | Number of senior high school students per teacher | 高等学校生徒数 (教員１人当たり) | #E0510303 (人:person) |
-| 3.1.4 Kindergarten pupils p.t. | Number of kindergarten pupils per teacher | 幼稚園在園者数 (教員１人当たり) | #E0510304 (人:person) |
-| 3.1.5 Day nursery pupils (p.n) | Number of day nursery pupils per nurse | 保育所在所児数 (保育士１人当たり) | #E0510305 (人:person) |
-| 3.2.1 Ratio of public SHS | Percentage of senior high school students in public institutions | 公立高等学校生徒比率 | #E05203 (％) |
-| 3.2.2 Public kinderga. ratio | Percentage of kindergarten pupils in public institutions | 公立幼稚園在園者比率 | #E05204 (％) |
-| 3.2.3 Public day nurse. ratio | Percentage of day nursery children in public institutions | 公営保育所在所児比率 | #E05205 (％) |
-| 3.3.1 ES pupils | Number of elementary school pupils per class | 小学校児童数 (１学級当たり) | #E0510205 (人:person) |
-| 3.3.2 JHS students | Number of junior high school students per class | 中学校生徒数 (１学級当たり) | #E0510206 (人:person) |
-| 4.1.1 Junior colleges | Number of junior colleges per 100,000 population | 短期大学数 (人口10万人当たり) | #E0610101 (校) |
-| 4.1.2 Colleges and universities | Number of colleges and universities per 100,000 population | 大学数 (人口10万人当たり) | #E0610102 (校) |
-| 4.2.1 Junior entrance cap. ind. | Index showing entrance capacity relative to previous year's advancing students for junior colleges | 短期大学収容力指数 | #E0610201 |
-| 4.2.2 Uni. entrance cap. ind. | Index showing entrance capacity relative to previous year's advancing students for universities | 大学収容力指数 | #E0610202 |
-| 4.3.1 Nat. colle. stud. ratio | Percentage of university students enrolled in national institutions | 国立大学学生数割合 | #E0620401 (％) |
-| 4.3.2 Pub. colle. stud. ratio | Percentage of university students enrolled in public institutions | 公立大学学生数割合 | #E0620402 (％) |
-| 4.3.3 Priv. colle. stud. ratio | Percentage of university students enrolled in private institutions | 私立大学学生数割合 | #E0620403 (％) |
-| 5.1.1 Speciality schools | Number of specialty schools per 100,000 population | 専修学校数 (人口10万人当たり) | #E08101 (校) |
-| 5.1.2 Miscellaneous schools | Number of miscellaneous schools per 100,000 population | 各種学校数 (人口10万人当たり) | #E08102 (校) |
-| 5.2.1 Students Specia. Schools | Number of students in specialty schools per 1,000 population | 専修学校生徒数 (人口千人当たり) | #E08201 (人:person) |
-| 5.2.2 Students Misc. Schools | Number of students in miscellaneous schools per 1,000 population | 各種学校生徒数 (人口千人当たり) | #E08202 (人:person) |
-| 6.1.1 Ed. Diff. Rate Kind. | Ratio of kindergarten graduates to first-grade elementary school students | 教育普及度［幼稚園］ | #E0910101 (％) |
-| 6.1.2 Ed. Diff. Rate Nurs. | Ratio of day nursery graduates to first-grade elementary school students | 教育普及度［保育所］ | #E0910102 (％) |
-| 6.2.1 Nurse. working rate | Percentage of day nursery capacity currently being utilized | 保育所利用率 | #E0910402 (％) |
-| 6.3.1 ES absentees ratio | Long-term absentees (30+ days) from elementary school per 1,000 pupils | 小学校長期欠席児童比率 [年度間30日以上] | #E09211 |
-| 6.3.2 JHS absentees ratio | Long-term absentees (30+ days) from junior high school per 1,000 students | 中学校長期欠席生徒比率 [年度間30日以上] | #E09212 |
-| 6.3.3 ES absentees ratio dis. | Long-term absentees due to diseases from elementary school per 1,000 pupils | 病気による小学校長期欠席児童比率 [年度間30日以上] | #I0821101 |
-| 6.3.4 JHS absentees ratio dis. | Long-term absentees due to diseases from junior high school per 1,000 students | 病気による中学校長期欠席生徒比率 [年度間30日以上] | #I0821102 |
-| 6.3.5 ES absentees ratio ref. | Long-term absentees due to school refusal from elementary school per 1,000 pupils | 不登校による小学校長期欠席児童比率 [年度間30日以上] | #E09213 |
-| 6.3.6 JSH absentees ratio ref. | Long-term absentees due to school refusal from junior high school per 1,000 students | 不登校による中学校長期欠席生徒比率 [年度間30日以上] | #E09214 |
-| 6.4.1 JHS Grads to Further Ed. | Percentage of junior high graduates continuing to further education | 中学校卒業者の進学率 | #E09401 (％) |
-| 6.4.2 SHS Grads to Further Ed. | Percentage of senior high graduates continuing to further education | 高等学校卒業者の進学率 | #E09402 (％) |
-| 6.5.1 HS Grads to Uni same pref | Percentage of high school graduates entering universities in the same prefecture | 出身高校所在地県の大学への入学者割合 | #E0940302 (％) |
-| 6.6.1 Ratio Elem-Jr High Grads | Percentage of people whose highest education is elementary or junior high school | 最終学歴が小学・中学卒の者の割合 | #E09501 (％) |
-| 6.6.2 Ratio SHS Completers | Percentage of people whose highest education is senior high school | 最終学歴が高校・旧中卒の者の割合 | #E09502 (％) |
-| 6.6.3 Ratio JC Completers | Percentage of people whose highest education is junior college | 最終学歴が短大・高専卒の者の割合 | #E09503 (％) |
-| 6.6.4 College-Uni comple. ratio | Percentage of people whose highest education is college/university | 最終学歴が大学・大学院卒の者の割合 | #E09504 (％) |
-| 7.1.1 ES ed exp | Educational expenses per pupil in elementary schools | 小学校教育費 (児童１人当たり) | #E10102 (円:yen) |
-| 7.1.2 Junior HS ed exp | Educational expenses per student in junior high schools | 中学校教育費 (生徒１人当たり) | #E10103 (円:yen) |
-| 7.1.3 HS educ exp | Educational expenses per student in senior high schools (full-time) | 高等学校教育費［全日制］(生徒１人当たり) | #E10104 (円:yen) |
-| 7.1.4 Kindergarten ed exp | Educational expenses per pupil in kindergartens | 幼稚園教育費 (在園者１人当たり) | #E10101 (円:yen) |
-| 7.1.5 Auth. childcenters exp | Educational expenses per pupil in authorized child centers (Kindergarten-and-day-care center type)| 幼保連携型認定こども園教育費（在園者１人当たり) | #E10105 (円:yen) |
+| sheet_index | Variable Name | Description | Japanese Description | Variable Code (unit) |
+|------------:|:-------------|:------------|:--------------------|:-------------------|
+| 1 | 1.1.1 Elementary schools | Number of elementary schools per 100,000 population aged 6-11 years | 小学校数 (６～11歳人口10万人当たり) | #E0110101 (校) |
+| 2 | 1.1.2 Junior high schools | Number of junior high schools per 100,000 population aged 12-14 years | 中学校数 (12～14歳人口10万人当たり) | #E0110102 (校) |
+| 3 | 1.1.3 Senior high schools | Number of senior high schools per 100,000 population aged 15-17 years | 高等学校数 (15～17歳人口10万人当たり) | #E0110103 (校) |
+| 4 | 1.1.4 Kindergartens | Number of kindergartens per 100,000 population aged 3-5 years | 幼稚園数 (３～５歳人口10万人当たり) | #E0110104 (園) |
+| 5 | 1.1.5 Day nurseries | Number of day nurseries per 100,000 population aged 0-5 years | 保育所数 (０～５歳人口10万人当たり) | #E0110105 (所) |
+| 6 | 1.1.6 Authorized child centers | Number of authorized child centers per 100,000 population aged 0-5 years | 認定こども園数 (０～５歳人口10万人当たり) | #E0110106 (園) |
+| 7 | 1.2.1 Elementary schools area | Number of elementary schools per inhabitable area (100 km²) | 小学校数 (可住地面積100k㎡当たり) | #E0110201 (校) |
+| 8 | 1.2.2 Junior HS area | Number of junior high schools per inhabitable area (100 km²) | 中学校数 (可住地面積100k㎡当たり) | #E0110202 (校) |
+| 9 | 1.2.3 Senior HS area | Number of senior high schools per inhabitable area (100 km²) | 高等学校数 (可住地面積100k㎡当たり) | #E0110203 (校) |
+| 10 | 1.3.1 Ratio public senior HS | Percentage of senior high schools that are public institutions | 公立高等学校割合 | #E01303 (％) |
+| 11 | 1.3.2 Ratio public kindergarten | Percentage of kindergartens that are public institutions | 公立幼稚園割合 | #E01304 (％) |
+| 12 | 1.3.3 Ratio public day nurse. | Percentage of day nurseries that are public institutions | 公営保育所割合 | #E01305 (％) |
+| 13 | 2.1.1 ES female teachers ratio | Percentage of elementary school teachers who are female | 女子教員割合［小学校］ | #E0410201 (％) |
+| 14 | 2.1.2 JHS female teachers ratio | Percentage of junior high school teachers who are female | 女子教員割合［中学校］ | #E0410202 (％) |
+| 15 | 3.1.1 ES pupils per teacher | Number of elementary school pupils per teacher | 小学校児童数 (教員１人当たり) | #E0510301 (人:person) |
+| 16 | 3.1.2 JHS students per teacher | Number of junior high school students per teacher | 中学校生徒数 (教員１人当たり) | #E0510302 (人:person) |
+| 17 | 3.1.3 SHS students per teacher | Number of senior high school students per teacher | 高等学校生徒数 (教員１人当たり) | #E0510303 (人:person) |
+| 18 | 3.1.4 Kindergarten pupils p.t. | Number of kindergarten pupils per teacher | 幼稚園在園者数 (教員１人当たり) | #E0510304 (人:person) |
+| 19 | 3.1.5 Day nursery pupils (p.n) | Number of day nursery pupils per nurse | 保育所在所児数 (保育士１人当たり) | #E0510305 (人:person) |
+| 20 | 3.2.1 Ratio of public SHS | Percentage of senior high school students in public institutions | 公立高等学校生徒比率 | #E05203 (％) |
+| 21 | 3.2.2 Public kinderga. ratio | Percentage of kindergarten pupils in public institutions | 公立幼稚園在園者比率 | #E05204 (％) |
+| 22 | 3.2.3 Public day nurse. ratio | Percentage of day nursery children in public institutions | 公営保育所在所児比率 | #E05205 (％) |
+| 23 | 3.3.1 ES pupils | Number of elementary school pupils per class | 小学校児童数 (１学級当たり) | #E0510205 (人:person) |
+| 24 | 3.3.2 JHS students | Number of junior high school students per class | 中学校生徒数 (１学級当たり) | #E0510206 (人:person) |
+| 25 | 4.1.1 Junior colleges | Number of junior colleges per 100,000 population | 短期大学数 (人口10万人当たり) | #E0610101 (校) |
+| 26 | 4.1.2 Colleges and universities | Number of colleges and universities per 100,000 population | 大学数 (人口10万人当たり) | #E0610102 (校) |
+| 27 | 4.2.1 Junior entrance cap. ind. | Index showing entrance capacity relative to previous year's advancing students for junior colleges | 短期大学収容力指数 | #E0610201 |
+| 28 | 4.2.2 Uni. entrance cap. ind. | Index showing entrance capacity relative to previous year's advancing students for universities | 大学収容力指数 | #E0610202 |
+| 29 | 4.3.1 Nat. colle. stud. ratio | Percentage of university students enrolled in national institutions | 国立大学学生数割合 | #E0620401 (％) |
+| 30 | 4.3.2 Pub. colle. stud. ratio | Percentage of university students enrolled in public institutions | 公立大学学生数割合 | #E0620402 (％) |
+| 31 | 4.3.3 Priv. colle. stud. ratio | Percentage of university students enrolled in private institutions | 私立大学学生数割合 | #E0620403 (％) |
+| 32 | 5.1.1 Speciality schools | Number of specialty schools per 100,000 population | 専修学校数 (人口10万人当たり) | #E08101 (校) |
+| 33 | 5.1.2 Miscellaneous schools | Number of miscellaneous schools per 100,000 population | 各種学校数 (人口10万人当たり) | #E08102 (校) |
+| 34 | 5.2.1 Students Specia. Schools | Number of students in specialty schools per 1,000 population | 専修学校生徒数 (人口千人当たり) | #E08201 (人:person) |
+| 35 | 5.2.2 Students Misc. Schools | Number of students in miscellaneous schools per 1,000 population | 各種学校生徒数 (人口千人当たり) | #E08202 (人:person) |
+| 36 | 6.1.1 Ed. Diff. Rate Kind. | Ratio of kindergarten graduates to first-grade elementary school students | 教育普及度［幼稚園］ | #E0910101 (％) |
+| 37 | 6.1.2 Ed. Diff. Rate Nurs. | Ratio of day nursery graduates to first-grade elementary school students | 教育普及度［保育所］ | #E0910102 (％) |
+| 38 | 6.2.1 Nurse. working rate | Percentage of day nursery capacity currently being utilized | 保育所利用率 | #E0910402 (％) |
+| 39 | 6.3.1 ES absentees ratio | Long-term absentees (30+ days) from elementary school per 1,000 pupils | 小学校長期欠席児童比率 [年度間30日以上] | #E09211 |
+| 40 | 6.3.2 JHS absentees ratio | Long-term absentees (30+ days) from junior high school per 1,000 students | 中学校長期欠席生徒比率 [年度間30日以上] | #E09212 |
+| 41 | 6.3.3 ES absentees ratio dis. | Long-term absentees due to diseases from elementary school per 1,000 pupils | 病気による小学校長期欠席児童比率 [年度間30日以上] | #I0821101 |
+| 42 | 6.3.4 JHS absentees ratio dis. | Long-term absentees due to diseases from junior high school per 1,000 students | 病気による中学校長期欠席生徒比率 [年度間30日以上] | #I0821102 |
+| 43 | 6.3.5 ES absentees ratio ref. | Long-term absentees due to school refusal from elementary school per 1,000 pupils | 不登校による小学校長期欠席児童比率 [年度間30日以上] | #E09213 |
+| 44 | 6.3.6 JSH absentees ratio ref. | Long-term absentees due to school refusal from junior high school per 1,000 students | 不登校による中学校長期欠席生徒比率 [年度間30日以上] | #E09214 |
+| 45 | 6.4.1 JHS Grads to Further Ed. | Percentage of junior high graduates continuing to further education | 中学校卒業者の進学率 | #E09401 (％) |
+| 46 | 6.4.2 SHS Grads to Further Ed. | Percentage of senior high graduates continuing to further education | 高等学校卒業者の進学率 | #E09402 (％) |
+| 47 | 6.5.1 HS Grads to Uni same pref | Percentage of high school graduates entering universities in the same prefecture | 出身高校所在地県の大学への入学者割合 | #E0940302 (％) |
+| 48 | 6.6.1 Ratio Elem-Jr High Grads | Percentage of people whose highest education is elementary or junior high school | 最終学歴が小学・中学卒の者の割合 | #E09501 (％) |
+| 49 | 6.6.2 Ratio SHS Completers | Percentage of people whose highest education is senior high school | 最終学歴が高校・旧中卒の者の割合 | #E09502 (％) |
+| 50 | 6.6.3 Ratio JC Completers | Percentage of people whose highest education is junior college | 最終学歴が短大・高専卒の者の割合 | #E09503 (％) |
+| 51 | 6.6.4 College-Uni comple. ratio | Percentage of people whose highest education is college/university | 最終学歴が大学・大学院卒の者の割合 | #E09504 (％) |
+| 52 | 7.1.1 ES ed exp | Educational expenses per pupil in elementary schools | 小学校教育費 (児童１人当たり) | #E10102 (円:yen) |
+| 53 | 7.1.2 Junior HS ed exp | Educational expenses per student in junior high schools | 中学校教育費 (生徒１人当たり) | #E10103 (円:yen) |
+| 54 | 7.1.3 HS educ exp | Educational expenses per student in senior high schools (full-time) | 高等学校教育費［全日制］(生徒１人当たり) | #E10104 (円:yen) |
+| 55 | 7.1.4 Kindergarten ed exp | Educational expenses per pupil in kindergartens | 幼稚園教育費 (在園者１人当たり) | #E10101 (円:yen) |
+| 56 | 7.1.5 Auth. childcenters exp | Educational expenses per pupil in authorized child centers (Kindergarten-and-day-care center type) | 幼保連携型認定こども園教育費（在園者１人当たり) | #E10105 (円:yen) |
 
 ## Prefecture Codes and Names
 
